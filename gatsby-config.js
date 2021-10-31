@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Aaron Emery | Front-End Dev`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Aaron Emery`,
+      summary: `who lives and works in Seattle building the front of the front-end.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    description: `Chaos begins.`,
+    siteUrl: `https://aaroncemery.com`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `aaroncemery`,
     },
   },
   plugins: [
