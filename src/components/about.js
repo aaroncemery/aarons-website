@@ -9,6 +9,7 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import styled from "styled-components"
+import { device } from "./device"
 
 const About = () => {
   const data = useStaticQuery(graphql`
@@ -50,14 +51,16 @@ const About = () => {
   // Page Styling
   const StyledContentWrapper =styled.div`
     position: relative;
-    margin-left: 25%;
-    margin-top: -200px;
     background: var(--opaque-white);
     padding-top: var(--spacing-2);
     padding-bottom: var(--spacing-2);
     padding-left: var(--spacing-4);
     border-radius: 8px;
     border: 4px solid rgba(0, 255, 0, 0.68);
+    @media ${device.laptop} {
+      margin-left: 25%;
+      margin-top: -200px; 
+    }
   `
 
   return (
