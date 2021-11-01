@@ -30,8 +30,6 @@ const About = () => {
           gatsbyImageData(
             layout: CONSTRAINED
             height: 500
-            width: 500
-            aspectRatio: 1.7
             transformOptions: {
               cropFocus: ENTROPY
             }
@@ -49,34 +47,53 @@ const About = () => {
   const imageData = data.desktop.childImageSharp.gatsbyImageData
 
   // Page Styling
+  const StyledAboutWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content 1fr;
+    align-items: center;
+  `
+
+  const StyledImage = styled(GatsbyImage)`
+    border-radius: 50%;
+    border: 16px solid magenta;
+    max-width: 80vw;
+    margin: 0 auto;
+    @media ${device.laptop} {
+      margin: 0;
+      max-width: 500px;
+      max-height: 500px;
+    }
+  `
   const StyledContentWrapper =styled.div`
     position: relative;
     background: var(--opaque-white);
     padding-top: var(--spacing-2);
     padding-bottom: var(--spacing-2);
-    padding-left: var(--spacing-4);
     border-radius: 8px;
-    border: 4px solid rgba(0, 255, 0, 0.68);
     @media ${device.laptop} {
       margin-left: 25%;
       margin-top: -200px; 
+      border: 4px solid rgba(0, 255, 0, 0.68);
+      box-shadow: 0 0 8px rgba(0, 255, 0, 0.99);
+      padding-left: var(--spacing-4);
     }
   `
 
   return (
-    <div className="about">
-      <GatsbyImage image={imageData} alt={author.name} style={{borderRadius: "50%", border: "16px solid magenta"}} />
+    <StyledAboutWrapper className="about">
+      <StyledImage image={imageData} alt={author.name} style={{borderRadius: "50%", border: "16px solid magenta"}} />
       <StyledContentWrapper>
-        <h2>These are just so awkward</h2>
+        <h2>😬 These are just so awkward</h2>
         <p>Let's not pretend this isn't a little weird. Here I am, trying to write some words about myself that are a mixture of self promotion and self deprication (you know, to keep it entertaining). Here you are reading these words either because:</p>
         <ol>
           <li>You were in a meeting with me and just googled me</li>
           <li>You found some dev stuff that I was engaged in and are looking me up to see what I'm all about</li>
           <li>You're wondering if I'm a good fit to work with you, or</li>
-          <li>You're just doing some general stalking because we used to know one another and you're bored wondering what happened to me (spoiler alert: I don't run or go to church anymore...I'm fine)</li>
+          <li>You're just doing some general stalking because we used to know one another and you're bored wondering what happened to me (spoiler alert: I don't 🏃‍♂️ or go to ⛪ anymore...I'm fine)</li>
         </ol>
       </StyledContentWrapper>
-    </div>
+    </StyledAboutWrapper>
   )
 }
 

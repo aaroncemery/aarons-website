@@ -1,5 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import RootHeader from "./rootHeader"
+import RootHero from "./rootHero"
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -10,9 +12,10 @@ const Layout = ({ location, title, children }) => {
 
   if (isRootPath) {
     header = (
-      <h1 className="header-link-home">
-        <Link to="/">{title}</Link>
-      </h1>
+      <React.Fragment>
+        <RootHeader title={title} />
+        <RootHero />
+      </React.Fragment>
     )
   } else if (isBlogPath) {
     header = (
@@ -29,15 +32,17 @@ const Layout = ({ location, title, children }) => {
   }
 
   return (
-    <div className="global-wrapper" data-is-root-path={isRootPath}>
+    <React.Fragment>
       <header className="global-header">{header}</header>
-      <main>{children}</main>
+      <div className="global-wrapper" data-is-root-path={isRootPath}>
+        <main>{children}</main>
+      </div>
       <footer>
         © {new Date().getFullYear()}, Built with
         {` `}
         <a href="https://www.gatsbyjs.com">Gatsby</a>
       </footer>
-    </div>
+    </React.Fragment>
   )
 }
 
