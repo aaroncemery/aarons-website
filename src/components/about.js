@@ -21,10 +21,12 @@ const StyledAboutWrapper = styled.div`
 
 const StyledImage = styled(GatsbyImage)`
   border-radius: 50%;
-  border: 16px solid magenta;
-  max-width: 80vw;
+  border: .5em solid magenta;
+  max-width: 300px;
+  max-height: 300px;
   margin: 0 auto;
   @media ${device.laptop} {
+    border-width: 1em;
     margin: 0;
     max-width: 500px;
     max-height: 500px;
@@ -81,7 +83,7 @@ const About = () => {
 
   return (
     <StyledAboutWrapper className="about">
-      <StyledImage image={imageData} alt={author.name} style={{borderRadius: "50%", border: "16px solid magenta"}} />
+      <StyledImage image={imageData} alt={author.name} />
       <StyledContentWrapper>
         <h2>😬 These are just so awkward</h2>
         <p>Let's not pretend this isn't a little weird. Here I am, trying to write some words about myself that are a mixture of self promotion and self deprication (you know, to keep it entertaining). Here you are reading these words either because:</p>
