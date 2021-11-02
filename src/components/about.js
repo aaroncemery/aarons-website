@@ -11,6 +11,40 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { device } from "./device"
 
+// Page Styling
+const StyledAboutWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr;
+  align-items: center;
+`
+
+const StyledImage = styled(GatsbyImage)`
+  border-radius: 50%;
+  border: 16px solid magenta;
+  max-width: 80vw;
+  margin: 0 auto;
+  @media ${device.laptop} {
+    margin: 0;
+    max-width: 500px;
+    max-height: 500px;
+  }
+`
+const StyledContentWrapper =styled.div`
+  position: relative;
+  background: var(--opaque-white);
+  padding-top: var(--spacing-2);
+  padding-bottom: var(--spacing-2);
+  border-radius: 8px;
+  @media ${device.laptop} {
+    margin-left: 25%;
+    margin-top: -200px; 
+    border: 4px solid rgba(0, 255, 0, 0.68);
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.99);
+    padding-left: var(--spacing-4);
+  }
+`
+
 const About = () => {
   const data = useStaticQuery(graphql`
     query AboutQuery {
@@ -43,42 +77,7 @@ const About = () => {
 
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site.siteMetadata?.author
-  const social = data.site.siteMetadata?.social
   const imageData = data.desktop.childImageSharp.gatsbyImageData
-
-  // Page Styling
-  const StyledAboutWrapper = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: max-content 1fr;
-    align-items: center;
-  `
-
-  const StyledImage = styled(GatsbyImage)`
-    border-radius: 50%;
-    border: 16px solid magenta;
-    max-width: 80vw;
-    margin: 0 auto;
-    @media ${device.laptop} {
-      margin: 0;
-      max-width: 500px;
-      max-height: 500px;
-    }
-  `
-  const StyledContentWrapper =styled.div`
-    position: relative;
-    background: var(--opaque-white);
-    padding-top: var(--spacing-2);
-    padding-bottom: var(--spacing-2);
-    border-radius: 8px;
-    @media ${device.laptop} {
-      margin-left: 25%;
-      margin-top: -200px; 
-      border: 4px solid rgba(0, 255, 0, 0.68);
-      box-shadow: 0 0 8px rgba(0, 255, 0, 0.99);
-      padding-left: var(--spacing-4);
-    }
-  `
 
   return (
     <StyledAboutWrapper className="about">

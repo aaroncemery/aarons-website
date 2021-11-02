@@ -10,18 +10,19 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import { device } from "./device"
 
-const RootHeader = ({title}) => {
+// Header Styling
+const StyledHeader = styled.div`
+  margin: 0 1rem;
+  @media ${device.laptop} {
+    max-width: 960px;
+  }
+  @media ${device.laptopL} {
+    max-width: 1440px;
+  }
+`
 
-  // Header Styling
-  const StyledHeader = styled.div`
-    margin: 0 1rem;
-    @media ${device.laptop} {
-      max-width: 960px;
-    }
-    @media ${device.laptopL} {
-      max-width: 1440px;
-    }
-  `
+
+const RootHeader = ({title}) => {
 
   return (
     <StyledHeader>
