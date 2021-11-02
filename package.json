@@ -8,6 +8,8 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@giphy/js-fetch-api": "^4.1.2",
+    "@giphy/react-components": "^5.4.0",
     "gatsby": "^4.0.2",
     "gatsby-plugin-feed": "^4.0.0",
     "gatsby-plugin-gatsby-cloud": "^4.0.0",
@@ -29,6 +31,7 @@
     "netlify-cms-app": "^2.15.57",
     "prismjs": "^1.25.0",
     "react": "^17.0.1",
+    "react-async-hook": "^4.0.0",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "styled-components": "^5.3.3",
