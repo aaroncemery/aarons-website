@@ -5,7 +5,7 @@ const Gif = ({ className }) => {
   const [results, setResults] = useState([])
 
   useEffect(() => {
-    fetch('https://api.giphy.com/v1/gifs/random?&limit=1&tag=scream&api_key=xkoZuUAmey3Q8b8qELw8KU9lkeqO0loi')
+    fetch(`https://api.giphy.com/v1/gifs/random?&limit=1&tag=scream&api_key=${process.env.GATSBY_GIPHY_API}`)
     .then(response => response.json())
     .then(responseData => setResults(responseData.data))
     .catch(error => {
