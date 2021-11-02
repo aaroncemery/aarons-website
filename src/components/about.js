@@ -83,7 +83,7 @@ const About = () => {
 
   return (
     <StyledAboutWrapper className="about">
-      <StyledImage image={imageData} alt={author.name} />
+      <StyledImage image={imageData} alt={author.name} imgStyle={{ borderRadius: '50%' }} />
       <StyledContentWrapper>
         <h2>😬 These are just so awkward</h2>
         <p>Let's not pretend this isn't a little weird. Here I am, trying to write some words about myself that are a mixture of self promotion and self deprication (you know, to keep it entertaining). Here you are reading these words either because:</p>
