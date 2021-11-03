@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 const Gif = ({ className }) => {
   const [results, setResults] = useState([])
+  // const { title } = results
 
   useEffect(() => {
     fetch(`https://api.giphy.com/v1/gifs/random?&limit=1&tag=scream&api_key=${process.env.GATSBY_GIPHY_API}`)
@@ -13,8 +14,10 @@ const Gif = ({ className }) => {
       })
   },[])
 
+  console.log(`results: ${JSON.stringify(results)}`);
+
   return (
-    <img src={results.image_url} alt={results.title} className={className} />
+    <img src={results.images.fixed_height_downsampled.url} alt={results.title} className={className} />
   )
 }
 
