@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -9,6 +10,8 @@ const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
+
+  console.log(post.frontmatter)
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -22,6 +25,14 @@ const BlogPostTemplate = ({ data, location }) => {
         itemType="http://schema.org/Article"
       >
         <header>
+          {/* <StaticImage
+            src={post.frontmatter.image}
+            alt="A dinosaur"
+            placeholder="blurred"
+            layout="fixed"
+            width={500}
+            height={500}
+          /> */}
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
           <p>{post.frontmatter.date}</p>
         </header>
