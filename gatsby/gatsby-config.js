@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `aaron emery | recovering dev`,
@@ -54,10 +58,8 @@ module.exports = {
     {
       resolve: `gatsby-source-sanity`,
       options: {
-        projectId: `voc9faxs`,
-        dataset: `production`,
-        // a token with read permissions is required
-        // if you have a private dataset
+        projectId: process.env.GATSBY_SANITY_PROJECT_ID,
+        dataset: process.env.GATSBY_SANITY_DATASET,
         token: process.env.GATSBY_SANITY_TOKEN,
 
         // If the Sanity GraphQL API was deployed using `--tag <name>`,

@@ -10,6 +10,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { device } from "./device"
+import BlockContent from '@sanity/block-content-to-react'
 
 // Page Styling
 const StyledAboutWrapper = styled.div`
@@ -32,7 +33,7 @@ const StyledImage = styled(GatsbyImage)`
     max-height: 500px;
   }
 `
-const StyledContentWrapper =styled.div`
+const StyledContentWrapper =styled(BlockContent)`
   position: relative;
   background: var(--opaque-white);
   padding-top: var(--spacing-2);
@@ -48,54 +49,92 @@ const StyledContentWrapper =styled.div`
 `
 
 const About = () => {
-  const data = useStaticQuery(graphql`
-    query AboutQuery {
-      site {
-        siteMetadata {
-          author {
-            name
-            summary
-          }
-          social {
-            twitter
-          }
-        }
-      }
-      desktop: file(relativePath: { eq: "profile-pic.JPEG" }) {
-        childImageSharp {
-          gatsbyImageData(
-            layout: CONSTRAINED
-            height: 500
-            transformOptions: {
-              cropFocus: ENTROPY
-            }
-            placeholder: BLURRED
-            formats: [AUTO, WEBP, AVIF]
-          )
-        }
-      }
-    }
-  `)
+  const data = useStaticQuery(AboutQuery)
 
   // Set these values by editing "siteMetadata" in gatsby-config.js
+  console.log(data.allSanityAuthor.nodes[0].image);
   const author = data.site.siteMetadata?.author
-  const imageData = data.desktop.childImageSharp.gatsbyImageData
+  const authorImage = data.allSanityAuthor.nodes[0].image.asset.gatsbyImageData
+  const content = data.allSanityAbout.nodes[0]._rawContent
+  console.log(content);
+
+  const serializers = {
+    types: {
+      block: props => {
+        const { style = 'normal' } = props.node
+        if (style === 'h2') {
+          return <h2>{props.children}</h2>
+        }
+        return BlockContent.defaultSerializers.types.block(props);
+      },
+      list: (props) =>
+        console.log("list", props) ||
+        (props.type === "bullet" ? (
+          <ul>{props.children}</ul>
+        ) : (
+          <ol>{props.children}</ol>
+        )),
+      listItem: (props) =>
+        console.log("list", props) ||
+        (props.type === "bullet" ? (
+          <li>{props.children}</li>
+        ) : (
+          <li>{props.children}</li>
+        )),
+      marks: {
+        strong: (props) =>
+          console.log("strong", props) || <strong>{props.children}</strong>,
+        em: (props) => console.log("em", props) || <em>{props.children}</em>,
+        code: (props) => console.log("code", props) || <code>{props.children}</code>
+      }
+    },
+  }
 
   return (
     <StyledAboutWrapper className="about">
-      <StyledImage image={imageData} alt={author.name} imgStyle={{ borderRadius: '50%' }} />
-      <StyledContentWrapper>
-        <h2>😬 These are just so awkward</h2>
-        <p>Let's not pretend this isn't a little weird. Here I am, trying to write some words about myself that are a mixture of self promotion and self deprication (you know, to keep it entertaining). Here you are reading these words either because:</p>
-        <ol>
-          <li>You were in a meeting with me and just googled me</li>
-          <li>You found some dev stuff that I was engaged in and are looking me up to see what I'm all about</li>
-          <li>You're wondering if I'm a good fit to work with you, or</li>
-          <li>You're just doing some general stalking because we used to know one another and you're bored wondering what happened to me (spoiler alert: I don't 🏃‍♂️ or go to ⛪ anymore...I'm fine)</li>
-        </ol>
-      </StyledContentWrapper>
+      <StyledImage image={authorImage} alt={author.name} imgStyle={{ borderRadius: '50%' }} />
+      <StyledContentWrapper blocks={content} serializers={serializers} />
     </StyledAboutWrapper>
   )
 }
 
 export default About
+
+const AboutQuery = graphql`
+  query AboutQuery {
+    site {
+      siteMetadata {
+        author {
+          name
+          summary
+        }
+        social {
+          twitter
+        }
+      }
+    }
+    allSanityAuthor {
+      nodes {
+        name
+        slug {
+          current
+        }
+        image {
+          asset {
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+          }
+        }
+      }
+    }
+    allSanityAbout {
+      nodes {
+        image {
+          asset {
+            gatsbyImageData
+          }
+        }
+        _rawContent
+      }
+    }
+  }
+`
