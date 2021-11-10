@@ -60,7 +60,7 @@ const StyledGifWrapper = styled.div`
   }
 `
 
-const StyledGif = styled.img`
+const StyledGif = styled(Gif)`
   display: block;
   margin: 0 auto;
   border-radius: 8px;
@@ -77,9 +77,9 @@ const RootHero = () => {
       <h1>Screaming into the abyss</h1>
       <h3>Unpolished behavior in an ever increasing polished society</h3>
       <StyledGifWrapper>
-        <StyledGif src='https://media.giphy.com/media/2oUfvvUgQHnLsQWFMW/giphy.gif' alt='dwight schrute screaming' />
-        <StyledGif src='https://media.giphy.com/media/l0HlCqV35hdEg2GUo/giphy.gif' alt='person yelling' />
-        <StyledGif src='https://media.giphy.com/media/xU9TT471DTGJq/giphy.gif' alt='homer simpson screaming' />
+        <StyledGif />
+        <StyledGif />
+        <StyledGif />
       </StyledGifWrapper>
     </StyledHeroWrapper>
   )
