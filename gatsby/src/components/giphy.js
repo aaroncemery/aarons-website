@@ -3,19 +3,20 @@ import { useEffect, useState } from 'react'
 import moment from 'moment'
 
 const Gif = ({ className }) => {
-  const [downsizedImage, setDownsizedImage] = useState([])
-  const [title, setTitle] = useState([])
-  const [gifData, setGifData] = useState(null)
+  const [gifData, setGifData] = useState([])
   const [runDate, setRunDate] = useState(new Date())
   const today = new Date()
-  let gifArray = []
 
   useEffect(() => {
-    if (moment(runDate).isSameOrAfter(today)) {
+    if (moment(runDate).isSameOrBefore(today)) {
+      let offset = Math.floor(Math.random() * (2000 - 1) + 1)
+      console.log(offset);
       console.log('running giphy call...');
-      fetch(`https://api.giphy.com/v1/gifs/search?q=scream&api_key=${process.env.GATSBY_GIPHY_API}&limit=3`)
+      fetch(`https://api.giphy.com/v1/gifs/search?q=scream&api_key=${process.env.GATSBY_GIPHY_API}&limit=3&offset=${offset}`)
       .then(response => response.json())
-      .then(responseData => setGifData(responseData))
+      .then(responseData => {
+        setGifData(responseData.data)
+      })
       .catch(error => {
         console.log('Error fetching and parsing data', error)
       })
@@ -25,9 +26,11 @@ const Gif = ({ className }) => {
 
   return (
     <>
-    <h1>hellllppppp</h1>
-    <div>{console.log(gifData)}</div>
-      {/* <img src={gifArray["url"]} alt={gifArray['title']} className={className} /> */}
+      {
+        gifData.map(data => {
+          return <img src={data.images.downsized.url} alt={data.title} className={className} />
+        })
+      }
     </>
   )
 }

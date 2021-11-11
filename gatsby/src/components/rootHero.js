@@ -78,8 +78,6 @@ const RootHero = () => {
       <h3>Unpolished behavior in an ever increasing polished society</h3>
       <StyledGifWrapper>
         <StyledGif />
-        <StyledGif />
-        <StyledGif />
       </StyledGifWrapper>
     </StyledHeroWrapper>
   )
