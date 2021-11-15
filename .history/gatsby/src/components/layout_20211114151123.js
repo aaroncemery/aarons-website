@@ -1,8 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import RootHeader from "./rootHeader"
-import RootHero from "./rootHero"
-import Hero from "./hero"
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -15,7 +13,6 @@ const Layout = ({ location, title, children }) => {
     header = (
       <React.Fragment>
         <RootHeader title={title} />
-        <RootHero />
       </React.Fragment>
     )
   } else if (isBlogPath) {
@@ -26,10 +23,9 @@ const Layout = ({ location, title, children }) => {
     )
   } else {
     header = (
-      <>
-        <RootHeader title={title} />
-        <Hero />
-      </>
+      <Link className="header-link-home" to="/">
+        {title}
+      </Link>
     )
   }
 
@@ -37,7 +33,7 @@ const Layout = ({ location, title, children }) => {
     <React.Fragment>
       <header className="global-header">{header}</header>
       <div className="global-wrapper" data-is-root-path={isRootPath}>
-        <main>{children}</main>
+        <div>{children}</div>
       </div>
       <footer>
         © {new Date().getFullYear()}, Built with

@@ -26,10 +26,9 @@ const Layout = ({ location, title, children }) => {
     )
   } else {
     header = (
-      <>
-        <RootHeader title={title} />
-        <Hero />
-      </>
+      <Link className="header-link-home" to="/">
+        {title}
+      </Link>
     )
   }
 

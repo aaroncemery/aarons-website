@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
-import RootHero from "../components/rootHero"
 
 import About from "../components/about"
 import Layout from "../components/layout"

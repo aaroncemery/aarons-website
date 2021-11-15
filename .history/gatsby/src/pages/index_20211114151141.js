@@ -13,7 +13,10 @@ const Home = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="home" />
-      <About />
+      <RootHero />
+      <main>
+        <About />
+      </main>
     </Layout>
   )
 }

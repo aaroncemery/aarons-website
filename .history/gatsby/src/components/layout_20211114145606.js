@@ -2,7 +2,6 @@ import * as React from "react"
 import { Link } from "gatsby"
 import RootHeader from "./rootHeader"
 import RootHero from "./rootHero"
-import Hero from "./hero"
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -26,10 +25,9 @@ const Layout = ({ location, title, children }) => {
     )
   } else {
     header = (
-      <>
-        <RootHeader title={title} />
-        <Hero />
-      </>
+      <Link className="header-link-home" to="/">
+        {title}
+      </Link>
     )
   }
 
