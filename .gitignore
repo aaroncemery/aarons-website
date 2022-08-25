@@ -60,6 +60,8 @@ public
 
 # Mac files
 .DS_Store
+.history
+.history/*
 
 # Yarn
 yarn-error.log
