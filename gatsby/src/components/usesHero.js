@@ -7,6 +7,8 @@
 
 import * as React from "react"
 import styled from "styled-components"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 // Hero Styling
 const StyledHeroWrapper = styled.div`
@@ -27,15 +29,15 @@ const StyledHeroWrapper = styled.div`
   }
 `
 
-const Hero = (props) => {
+const UsesHero = (props) => {
   const { title, subtitle, image } = props
 
   return (
     <StyledHeroWrapper>
-      <h1>{title}</h1>
-      <h3>{subtitle}</h3>
+      <h1>Uses</h1>
+      <FontAwesomeIcon icon={faCoffee} />
     </StyledHeroWrapper>
   )
 }
 
-export default Hero
+export default UsesHero

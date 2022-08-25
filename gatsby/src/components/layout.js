@@ -2,13 +2,16 @@ import * as React from "react"
 import { Link } from "gatsby"
 import RootHeader from "./rootHeader"
 import RootHero from "./rootHero"
+import UsesHero from "./usesHero"
 import Hero from "./hero"
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const blogPath= `${__PATH_PREFIX__}/blog`
+  const usesPath= `${__PATH_PREFIX__}/uses`
   const isRootPath = location.pathname === rootPath
   const isBlogPath = location.pathname === blogPath
+  const isUsesPath = location.pathname === usesPath
   let header
 
   if (isRootPath) {
@@ -23,6 +26,13 @@ const Layout = ({ location, title, children }) => {
       <h1 className="main-heading">
         <Link to="/">{title}</Link>
       </h1>
+    )
+  } else if (isUsesPath) {
+    header = (
+      <>
+        <RootHeader title={title} />
+        <UsesHero />
+      </>
     )
   } else {
     header = (

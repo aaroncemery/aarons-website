@@ -7,7 +7,6 @@
 
 import * as React from "react"
 import styled from "styled-components"
-import Gif from "./giphy"
 import { device } from "./device"
 
 // Hero Styling

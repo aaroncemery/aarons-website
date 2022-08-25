@@ -4,6 +4,7 @@ import About from "../components/about"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Hero from "../components/hero"
 
 const Uses = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
