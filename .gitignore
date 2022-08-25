@@ -60,6 +60,8 @@ public
 
 # Mac files
 .DS_Store
+.history
+.history/*
 
 # Yarn
 yarn-error.log
@@ -67,3 +69,6 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+.history
+.history/*
